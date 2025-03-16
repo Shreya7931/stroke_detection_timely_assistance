@@ -1,7 +1,11 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from routes import hospitals, alerts
 
 app = FastAPI(title="Timely Assistance API")
+
+# Serve static files (including favicon)
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Include Routes
 app.include_router(hospitals.router)
